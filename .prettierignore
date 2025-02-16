@@ -1,0 +1,26 @@
+# Dependencies
+node_modules
+
+# Repo-specific
+.vscode
+.git
+
+# Local env files
+*.env
+.env
+.env.*
+
+# Testing
+coverage
+
+# Build Outputs
+.next/
+out/
+build
+dist
+
+# Config
+.husky
+.prettierignore
+.next.config.ts
+.tailwind.config.ts
