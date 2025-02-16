@@ -13,8 +13,5 @@ jobs:
         shell: bash
         run: find . -type f -name ".env.example" -exec sh -c 'cp "$1" "${1%.*}"' _ {} \;
 
-      - name: format
-        run: npm run format
-
       - name: Lint
         run: npm run lint
