@@ -16,7 +16,12 @@ const eslintConfig = [
     "prettier",
     "plugin:testing-library/react",
     "plugin:jest-dom/recommended"
-  )
+  ),
+  {
+    rules: {
+      "testing-library/prefer-screen-queries": "off"
+    }
+  }
 ];
 
 export default eslintConfig;

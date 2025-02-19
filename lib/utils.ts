@@ -1,3 +1,4 @@
+import { API_END_POINT, BASE_URL } from "@/constants";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -15,8 +16,7 @@ export function createUrl(pathname: string, params: URLSearchParams) {
   return `${pathname}${queryString}`;
 }
 
-export const createApiUrl = () =>
-  `${process.env.APP_URL}${process.env.API_END_POINT}`;
+export const createApiUrl = () => `${BASE_URL}${API_END_POINT}`;
 
 export function vehicleName(brand: string, model: string) {
   return `${brand} ${model}`;

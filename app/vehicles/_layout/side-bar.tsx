@@ -19,6 +19,7 @@ const SideBar = () => {
           formAction="/vehicles"
           searchParam="query"
           placeHolder="Search for vehicles.."
+          name="search"
         />
         <Separator />
         <PriceFilter />
