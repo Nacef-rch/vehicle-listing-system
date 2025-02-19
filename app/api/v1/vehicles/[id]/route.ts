@@ -11,7 +11,7 @@ export async function GET(
     const id = (await params).id;
     const vehicle = vehiclesData.data.find((v) => v.id === id);
 
-    // Uncomment the next line to simulate a delay
+    // Uncomment the env variable to simulate a delay
     if (process.env.DELAY_MS) {
       await delay(Number(process.env.DELAY_MS));
     }

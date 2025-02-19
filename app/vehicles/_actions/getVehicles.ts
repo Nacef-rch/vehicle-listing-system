@@ -13,12 +13,15 @@ export async function getVehiclesApi(
     ? createUrl("", new URLSearchParams(searchParams as Record<string, string>))
     : "";
 
-  const res = await fetch(`${createApiUrl()}/vehicles${queryString}`, {
-    cache: "force-cache",
-    next: {
-      tags: [TAGS.vehicles],
-    },
-  });
+  const res = await fetch(
+    `${createApiUrl()}/vehicles${queryString}`,
+    process.env.ENABLE_APP_CACHE
+      ? {
+          cache: "force-cache",
+          next: { tags: [TAGS.vehicles] },
+        }
+      : {}
+  );
 
   if (!res.ok) {
     // You might throw an error or handle it accordingly

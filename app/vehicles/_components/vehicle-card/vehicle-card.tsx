@@ -1,8 +1,9 @@
 import React from "react";
-import Link from "next/link";
+
 import NextImage from "next/image";
 //components
 import CardDescription from "./card-description";
+import { PreloadImagesLink } from "@/components/preload-images";
 
 type Props = {
   id: string;
@@ -19,10 +20,11 @@ type Props = {
 
 const VehicleCard = ({ id, index, images, ...props }: Props) => {
   return (
-    <Link
+    <PreloadImagesLink
       className="group text-gray-700"
       href={`/vehicle-detail/${id}`}
       prefetch={true}
+      images={images.slice(1, 5)}
     >
       <NextImage
         loading={index < 9 ? "eager" : "lazy"}
@@ -36,7 +38,7 @@ const VehicleCard = ({ id, index, images, ...props }: Props) => {
         //sizes="(min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
       />
       <CardDescription {...props} />
-    </Link>
+    </PreloadImagesLink>
   );
 };
 

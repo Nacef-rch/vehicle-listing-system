@@ -25,13 +25,13 @@ export default async function VehicleDetailPage({
     redirect("/vehicles");
   }
 
-  const vehicleTitle = vehicleName(vehicle.brand, vehicle.model);
+  const vehicleTitle = vehicleName(vehicle?.brand, vehicle?.model);
 
   return (
     <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:max-w-7xl">
       <div className="lg:grid lg:grid-cols-3 lg:gap-x-8 lg:px-8">
         <Image
-          src={vehicle.images[0]}
+          src={vehicle?.images[0]}
           loading="eager"
           priority
           alt={`${vehicleTitle} - 0`}
