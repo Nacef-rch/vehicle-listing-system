@@ -5,28 +5,43 @@ import { createApiUrl, createUrl } from "@/lib/utils";
 import { Vehicle, VehiclesSearchParams } from "@/types/vehicle";
 //constants
 import { TAGS } from "@/constants";
+import { fetchVehicles } from "@/lib/api";
 
 export async function getVehiclesApi(
   searchParams: VehiclesSearchParams | undefined
 ): Promise<{ count: number; data: Vehicle[] }> {
-  const queryString = searchParams
-    ? createUrl("", new URLSearchParams(searchParams as Record<string, string>))
-    : "";
+  if (process.env.NODE_ENV === "production") {
+    const query = searchParams?.query;
+    const min = searchParams?.min ? Number(searchParams.min) : undefined;
+    const max = searchParams?.max ? Number(searchParams.max) : undefined;
+    const sort = searchParams?.sort || "price-asc";
+    const page = searchParams?.page ? Number(searchParams.page) : 1;
+    const limit = searchParams?.limit ? Number(searchParams.limit) : 10;
 
-  const res = await fetch(
-    `${createApiUrl()}/vehicles${queryString}`,
-    process.env.ENABLE_APP_CACHE
-      ? {
-          cache: "force-cache",
-          next: { tags: [TAGS.vehicles] },
-        }
-      : {}
-  );
+    return await fetchVehicles({ query, min, max, sort, page, limit });
+  } else {
+    // In development mode, call the API route via HTTP
+    const queryString = searchParams
+      ? createUrl(
+          "",
+          new URLSearchParams(searchParams as Record<string, string>)
+        )
+      : "";
 
-  if (!res.ok) {
-    // You might throw an error or handle it accordingly
-    throw new Error(`Failed to fetch vehicles: ${res.statusText}`);
+    const res = await fetch(
+      `${createApiUrl()}/vehicles${queryString}`,
+      process.env.ENABLE_APP_CACHE
+        ? {
+            cache: "force-cache",
+            next: { tags: [TAGS.vehicles] },
+          }
+        : {}
+    );
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch vehicles: ${res.statusText}`);
+    }
+
+    return await res.json();
   }
-
-  return await res.json();
 }

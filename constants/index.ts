@@ -1,7 +1,7 @@
 import { SortFilterItem } from "@/types";
 
 export const BASE_URL =
-  process.env.APP_ENV === "PROD"
+  process.env.NODE_ENV === "production"
     ? `https://${process.env.PRODUCTION_URL}`
     : "http://localhost:3000";
 
