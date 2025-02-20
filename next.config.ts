@@ -20,6 +20,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Recommended: this will reduce output
+  // Docker image size by 80%+
+  output: "standalone",
 };
 
 export default nextConfig;

@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import vehiclesData from "@/mocks/vehicles.json";
-import { delay } from "@/lib/utils";
+import { fetchVehicleById } from "@/lib/api";
 
 export async function GET(
   _request: NextRequest,
@@ -9,13 +8,7 @@ export async function GET(
 ) {
   try {
     const id = (await params).id;
-    const vehicle = vehiclesData.data.find((v) => v.id === id);
-
-    // Uncomment the env variable to simulate a delay
-    if (process.env.DELAY_MS) {
-      await delay(Number(process.env.DELAY_MS));
-    }
-
+    const vehicle = await fetchVehicleById(id);
     if (!vehicle) {
       return NextResponse.json({ error: "Vehicle not found" }, { status: 404 });
     }

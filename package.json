@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "docker:dev": "docker-compose up",
     "build": "next build",
+    "docker:build": "docker-compose up",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",

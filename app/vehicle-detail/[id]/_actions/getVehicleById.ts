@@ -5,21 +5,31 @@ import { createApiUrl } from "@/lib/utils";
 import { Vehicle } from "@/types/vehicle";
 //constants
 import { TAGS } from "@/constants";
+import { fetchVehicleById } from "@/lib/api";
 
 export async function getVehicleById(id: string): Promise<Vehicle> {
-  const res = await fetch(
-    `${createApiUrl()}/vehicles/${id}`,
-    process.env.ENABLE_APP_CACHE
-      ? {
-          cache: "force-cache",
-          next: { tags: [TAGS.singleVehicle] },
-        }
-      : {}
-  );
+  if (process.env.NODE_ENV === "production") {
+    // In production, use the shared function directly
+    const vehicle = await fetchVehicleById(id);
+    if (!vehicle) {
+      throw new Error("Vehicle not found");
+    }
+    return vehicle;
+  } else {
+    const res = await fetch(
+      `${createApiUrl()}/vehicles/${id}`,
+      process.env.ENABLE_APP_CACHE
+        ? {
+            cache: "force-cache",
+            next: { tags: [TAGS.singleVehicle] },
+          }
+        : {}
+    );
 
-  if (!res.ok) {
-    throw new Error(`Failed to fetch vehicle with id ${id}`);
+    if (!res.ok) {
+      throw new Error(`Failed to fetch vehicle with id ${id}`);
+    }
+
+    return await res.json();
   }
-
-  return await res.json();
 }
