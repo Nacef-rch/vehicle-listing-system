@@ -18,12 +18,12 @@ export async function getVehicleById(id: string): Promise<Vehicle> {
   } else {
     const res = await fetch(
       `${createApiUrl()}/vehicles/${id}`,
-      process.env.ENABLE_APP_CACHE
-        ? {
+      process.env.DISABLE_APP_CACHE
+        ? {}
+        : {
             cache: "force-cache",
             next: { tags: [TAGS.singleVehicle] },
           }
-        : {}
     );
 
     if (!res.ok) {

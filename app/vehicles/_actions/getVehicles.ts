@@ -30,12 +30,12 @@ export async function getVehiclesApi(
 
     const res = await fetch(
       `${createApiUrl()}/vehicles${queryString}`,
-      process.env.ENABLE_APP_CACHE
-        ? {
+      process.env.DISABLE_APP_CACHE
+        ? {}
+        : {
             cache: "force-cache",
             next: { tags: [TAGS.vehicles] },
           }
-        : {}
     );
 
     if (!res.ok) {
