@@ -10,10 +10,9 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,mdx}\" --cache",
-    "prepare": "husky",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "e2e": "playwright test"
+    "test:unit": "jest ./__tests__",
+    "test:unit:watch": "jest --watch ./__tests__",
+    "test:e2e": "playwright test"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
