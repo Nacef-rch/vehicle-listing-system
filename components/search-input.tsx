@@ -33,10 +33,7 @@ const Search = ({
   return (
     <Form
       action={formAction ?? ""}
-      className={cn(
-        "relative w-full max-w-[550px] sm:w-80 xl:w-full",
-        className
-      )}
+      className={cn("relative w-full xl:w-full", className)}
     >
       <Input
         key={searchParams?.get(searchParam)}

@@ -27,6 +27,7 @@ const SortItem = ({
       })}
       role="menuitem"
       id={`menu-item-${index}`}
+      tabIndex={index}
     >
       {title}
     </DynamicTag>

@@ -18,6 +18,8 @@ export function createUrl(pathname: string, params: URLSearchParams) {
 
 export const createApiUrl = () => `${BASE_URL}${API_END_POINT}`;
 
+export const isBrowser = typeof window !== "undefined";
+
 export function vehicleName(brand: string, model: string) {
   return `${brand} ${model}`;
 }

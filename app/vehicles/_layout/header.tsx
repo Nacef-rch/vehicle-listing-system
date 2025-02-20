@@ -6,6 +6,8 @@ type HeaderProps = {
   title: string;
 };
 
+export const experimental_ppr = true;
+
 const Header = ({ title }: HeaderProps) => {
   return (
     <div className="flex items-baseline justify-between border-b border-gray-200 pb-6">

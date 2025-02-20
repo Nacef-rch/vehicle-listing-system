@@ -36,13 +36,17 @@ const VehiclePagination = ({
   const pageNumbers = generatePageNumbers(totalPages, currentPage);
 
   return (
-    <div className="mt-10 flex justify-center border-t border-gray-200 py-4">
+    <div
+      className="mt-10 flex flex-wrap justify-center gap-5 border-t border-gray-200 py-4 md:flex-nowrap md:gap-0"
+      aria-label="Pagination Navigation"
+    >
       <Pagination>
         <PaginationContent>
           {currentPage !== 1 && (
             <PaginationItem>
               <PaginationPrevious
                 href={addUrlParams("page", currentPage - 1)}
+                aria-label="Go to previous page"
               />
             </PaginationItem>
           )}
@@ -51,7 +55,7 @@ const VehiclePagination = ({
             if (page === "ellipsis") {
               return (
                 <PaginationItem key={`ellipsis-${index}`}>
-                  <PaginationEllipsis />
+                  <PaginationEllipsis aria-hidden="true" />
                 </PaginationItem>
               );
             }
@@ -62,6 +66,8 @@ const VehiclePagination = ({
                 <PaginationLink
                   href={addUrlParams("page", page)}
                   isActive={isActive}
+                  tabIndex={index}
+                  aria-label={`Go to page ${page}`}
                 >
                   {page}
                 </PaginationLink>
@@ -71,14 +77,17 @@ const VehiclePagination = ({
 
           {!(currentPage === totalPages) && (
             <PaginationItem>
-              <PaginationNext href={addUrlParams("page", currentPage + 1)} />
+              <PaginationNext
+                href={addUrlParams("page", currentPage + 1)}
+                aria-label="Go to next page"
+              />
             </PaginationItem>
           )}
         </PaginationContent>
       </Pagination>
-      <ul className="flex items-center gap-3">
+      <ul className="flex items-center gap-3" aria-label="Items per page">
         <p className="text-md font-semibold text-muted-foreground">Limit:</p>
-        {[6, 12, 18].map((pageLimit) => (
+        {[6, 12, 18].map((pageLimit, index) => (
           <li
             key={pageLimit}
             className={cn(
@@ -88,7 +97,12 @@ const VehiclePagination = ({
               }
             )}
           >
-            <Link prefetch={true} href={addUrlParams("limit", pageLimit)}>
+            <Link
+              prefetch={true}
+              href={addUrlParams("limit", pageLimit)}
+              aria-label={`Show ${pageLimit} items per page`}
+              tabIndex={index}
+            >
               {pageLimit}
             </Link>
           </li>

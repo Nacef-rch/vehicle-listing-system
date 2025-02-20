@@ -50,8 +50,14 @@ const PriceFilter = () => {
   );
 
   return (
-    <div className="mt-3 rounded-md border border-gray-200 bg-slate-50 p-1">
-      <p className="text-sm text-muted-foreground">Price Filter</p>
+    <div
+      className="mt-3 rounded-md border border-gray-200 bg-slate-50 p-5 md:p-1"
+      role="region"
+      aria-labelledby="price-filter-label"
+    >
+      <p id="price-filter-label" className="text-sm text-muted-foreground">
+        Price Filter
+      </p>
       <div className="mt-10 w-full p-2">
         <DualRangeSlider
           label={(value) => {
@@ -62,6 +68,10 @@ const PriceFilter = () => {
           min={MIN_MAX_VALUES[0]}
           max={MIN_MAX_VALUES[1]}
           step={999}
+          aria-valuemin={MIN_MAX_VALUES[0]}
+          aria-valuemax={MIN_MAX_VALUES[1]}
+          aria-valuenow={values[0]}
+          aria-labelledby="price-filter-label"
         />
       </div>
       {isMounted && <MemorizedComponent heavyCalculation={heavyCalculation} />}

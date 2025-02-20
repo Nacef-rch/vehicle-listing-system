@@ -43,7 +43,7 @@ export default async function VehicleDetailPage({
 
         <VehicleCarousel title={vehicleTitle} images={vehicle.images} />
       </div>
-      <div className="p-10">
+      <div className="px-10 lg:p-10">
         <VehicleTitle
           vehicleTitle={vehicleTitle}
           condition={vehicle.condition}

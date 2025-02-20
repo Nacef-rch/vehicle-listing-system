@@ -7,7 +7,7 @@ import Separator from "@/components/separator";
 
 const SideBar = () => {
   return (
-    <div className="flex flex-col gap-3 bg-white p-5">
+    <div className="container mx-auto flex flex-col gap-3 bg-white p-5">
       <Link
         className="float-right text-sm text-slate-700 underline hover:text-gray-900"
         href="/vehicles"
@@ -19,7 +19,6 @@ const SideBar = () => {
           formAction="/vehicles"
           searchParam="query"
           placeHolder="Search for vehicles.."
-          name="search"
         />
         <Separator />
         <PriceFilter />

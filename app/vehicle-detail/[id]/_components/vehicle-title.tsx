@@ -19,18 +19,15 @@ const VehicleTitle = ({
   price,
 }: VehicleTitleProps) => {
   return (
-    <div className="mt-1 flex items-center justify-between px-4 sm:px-0">
-      <div className="flex items-center gap-3">
+    <div className="mt-1 flex flex-wrap items-center justify-between gap-3 px-4 sm:px-0">
+      <div className="flex flex-wrap gap-3 sm:items-center">
         <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
           {vehicleTitle}
         </h1>
-        <Badge className="text-xs">{condition}</Badge>
-        <ColorLabel color={color} size={ColorSize.Medium} />
-        <span
-          aria-hidden="true"
-          className={`size-${10} rounded-full border border-black/30 opacity-70`}
-          style={{ backgroundColor: color.toLowerCase() }}
-        ></span>
+        <div className="flex items-center gap-3">
+          <Badge className="text-xs">{condition}</Badge>
+          <ColorLabel color={color} size={ColorSize.Medium} />
+        </div>
       </div>
 
       <p className="mr-5 flex items-center gap-1 text-2xl font-bold text-gray-900">

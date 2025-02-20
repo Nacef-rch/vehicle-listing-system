@@ -25,6 +25,8 @@ const VehicleCard = ({ id, index, images, ...props }: Props) => {
       href={`/vehicle-detail/${id}`}
       prefetch={true}
       images={images.slice(1, 5)}
+      aria-label={`View details of ${props.title}`}
+      tabIndex={index}
     >
       <NextImage
         loading={index < 9 ? "eager" : "lazy"}
@@ -35,7 +37,6 @@ const VehicleCard = ({ id, index, images, ...props }: Props) => {
         height={156}
         quality={65}
         className="xl:aspect-7/8 aspect-7/8 w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75"
-        //sizes="(min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
       />
       <CardDescription {...props} />
     </PreloadImagesLink>

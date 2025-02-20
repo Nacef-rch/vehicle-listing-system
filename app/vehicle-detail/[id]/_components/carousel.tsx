@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import Image from "next/image";
 
@@ -8,6 +9,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/carousel";
+import useMedia from "@/hooks/useMedia";
+import { cn } from "@/lib/utils";
 
 export function VehicleCarousel({
   title,
@@ -16,17 +19,29 @@ export function VehicleCarousel({
   title: string;
   images: string[];
 }) {
+  const isVertical = useMedia("(min-width: 1023px)", false);
   return (
     <Carousel
       opts={{
         align: "start",
       }}
-      orientation="vertical"
-      className="w-full max-w-xs"
+      orientation={isVertical ? "vertical" : "horizontal"}
+      className="mx-10 w-auto lg:w-full"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label={`Image carousel for ${title}`}
     >
-      <CarouselContent className="-ml-1 h-[450px]">
+      <CarouselContent
+        className={cn("-ml-1 w-full", {
+          "h-[450px]": isVertical,
+        })}
+      >
         {images.map((src, index) => (
-          <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
+          <CarouselItem
+            key={index}
+            className="basis-1/2 pl-1 md:basis-1/3"
+            tabIndex={index}
+          >
             <div className="p-1">
               <Image
                 loading={index < 3 ? "eager" : "lazy"}
@@ -41,8 +56,8 @@ export function VehicleCarousel({
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious aria-label="Previous image" />
+      <CarouselNext aria-label="Next page" />
     </Carousel>
   );
 }

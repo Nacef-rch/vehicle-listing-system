@@ -29,7 +29,7 @@ const VehiclesPage = async (props: VehiclesPageProps) => {
 
   return (
     <div className="lg:col-span-3">
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-2 sm:py-0 lg:max-w-7xl lg:px-1">
+      <div className="container mx-auto px-4 py-16 sm:px-2 sm:py-0 lg:max-w-7xl lg:px-1">
         <DynamicVehiclesList data={data} />
         <VehiclePagination
           totalPages={Math.ceil(count / pageLimit)}

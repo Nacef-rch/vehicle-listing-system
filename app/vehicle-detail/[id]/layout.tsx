@@ -1,6 +1,8 @@
 import React, { Suspense } from "react";
 import Loading from "./loading";
 
+export const experimental_ppr = true;
+
 const VehiclesLayout = ({
   children,
 }: Readonly<{
