@@ -1,5 +1,9 @@
 ## 🚀 Getting Started
 
+![Page Performance](public/performance.png)
+
+[🔗 View Performance Report : PageSpeed Insights](https://pagespeed.web.dev/analysis/https-vehicle-listing-system-netlify-app-vehicles/31mdwq8ov5?form_factor=desktop)
+
 ## 📌 Prerequisites
 
 - [🐳 Docker Desktop](https://www.docker.com/products/docker-desktop/) (required for the dockerized build version)
