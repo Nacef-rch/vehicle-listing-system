@@ -68,10 +68,6 @@ const PriceFilter = () => {
           min={MIN_MAX_VALUES[0]}
           max={MIN_MAX_VALUES[1]}
           step={999}
-          aria-valuemin={MIN_MAX_VALUES[0]}
-          aria-valuemax={MIN_MAX_VALUES[1]}
-          aria-valuenow={values[0]}
-          aria-labelledby="price-filter-label"
         />
       </div>
       {isMounted && <MemorizedComponent heavyCalculation={heavyCalculation} />}

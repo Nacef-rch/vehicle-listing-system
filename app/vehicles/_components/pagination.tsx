@@ -66,7 +66,7 @@ const VehiclePagination = ({
                 <PaginationLink
                   href={addUrlParams("page", page)}
                   isActive={isActive}
-                  tabIndex={index}
+                  tabIndex={0}
                   aria-label={`Go to page ${page}`}
                 >
                   {page}
@@ -85,29 +85,28 @@ const VehiclePagination = ({
           )}
         </PaginationContent>
       </Pagination>
-      <ul className="flex items-center gap-3" aria-label="Items per page">
+      <div className="flex items-center gap-3">
         <p className="text-md font-semibold text-muted-foreground">Limit:</p>
-        {[6, 12, 18].map((pageLimit, index) => (
-          <li
-            key={pageLimit}
-            className={cn(
-              "flex size-8 items-center justify-center rounded-lg bg-slate-200",
-              {
-                "bg-slate-900 text-white": pageLimit === limit,
-              }
-            )}
-          >
-            <Link
-              prefetch={true}
-              href={addUrlParams("limit", pageLimit)}
-              aria-label={`Show ${pageLimit} items per page`}
-              tabIndex={index}
+        <ul className="flex items-center gap-3" aria-label="Items per page">
+          {[6, 12, 18].map((pageLimit) => (
+            <li
+              key={pageLimit}
+              className={cn(
+                "flex size-8 items-center justify-center rounded-lg bg-slate-200",
+                { "bg-slate-900 text-white": pageLimit === limit }
+              )}
             >
-              {pageLimit}
-            </Link>
-          </li>
-        ))}
-      </ul>
+              <Link
+                prefetch={true}
+                href={addUrlParams("limit", pageLimit)}
+                aria-label={`Show ${pageLimit} items per page`}
+              >
+                {pageLimit}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

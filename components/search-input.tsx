@@ -34,6 +34,8 @@ const Search = ({
     <Form
       action={formAction ?? ""}
       className={cn("relative w-full xl:w-full", className)}
+      role="search"
+      aria-label="Search form"
     >
       <Input
         key={searchParams?.get(searchParam)}
@@ -42,12 +44,16 @@ const Search = ({
         placeholder={placeHolder}
         autoComplete="off"
         defaultValue={searchParams?.get(searchParam) || ""}
+        aria-label={`Search input for ${searchParam}`}
+        aria-placeholder={placeHolder}
         {...rest}
       />
       {showButton && (
         <button
           className="absolute right-0 top-0 mr-3 flex h-full cursor-pointer items-center"
           type="submit"
+          aria-label="Submit search"
+          tabIndex={0}
         >
           {showIcon && <SearchIcon className="h-4" />}
         </button>

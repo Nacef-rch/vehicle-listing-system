@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
+import { Metadata } from "next";
 //layouts
 import Header from "./_layout/header";
 import SideBar from "./_layout/side-bar";
 import Loading from "./loading";
-import { Metadata } from "next";
 
 const PAGE_TITLE = "EV Vehicles";
 

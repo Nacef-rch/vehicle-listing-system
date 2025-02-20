@@ -26,7 +26,6 @@ const VehicleCard = ({ id, index, images, ...props }: Props) => {
       prefetch={true}
       images={images.slice(1, 5)}
       aria-label={`View details of ${props.title}`}
-      tabIndex={index}
     >
       <NextImage
         loading={index < 9 ? "eager" : "lazy"}

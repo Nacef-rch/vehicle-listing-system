@@ -28,7 +28,7 @@ const CardDescription = ({
   return (
     <>
       <div className="mt-4 flex items-center justify-between gap-2">
-        <h3 className="text-lg">{title}</h3>
+        <h2 className="text-lg">{title}</h2>
         <p className="mt-2 text-lg font-medium text-gray-900">{price} £</p>
       </div>
       <div className="mt-1 flex items-center gap-1">
