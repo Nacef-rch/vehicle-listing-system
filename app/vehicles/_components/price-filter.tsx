@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 //hooks
 import useDebounce from "@/hooks/useDebounce";
@@ -29,11 +29,11 @@ const PriceFilter = () => {
     return total;
   }, []);
 
+  const minValue = +(searchParams.get("min") ?? MIN_MAX_VALUES[0]);
+  const maxValue = +(searchParams.get("max") ?? MIN_MAX_VALUES[1]);
+
   //get default values from link above
-  const [values, setValues] = useState<[number, number]>([
-    +(searchParams.get("min") ?? MIN_MAX_VALUES[0]),
-    +(searchParams.get("max") ?? MIN_MAX_VALUES[1]),
-  ]);
+  const [values, setValues] = useState<[number, number]>([minValue, maxValue]);
   const debounceUrlUpdate = useDebounce((value) => {
     const newParams = new URLSearchParams(searchParams.toString());
     newParams.set("min", Math.min(...value).toString());
@@ -48,6 +48,13 @@ const PriceFilter = () => {
     },
     [debounceUrlUpdate]
   );
+
+  useEffect(() => {
+    //to reset the slider when the we clear filters
+    if (!searchParams.get("min") && !searchParams.get("max")) {
+      setValues([MIN_MAX_VALUES[0], MIN_MAX_VALUES[1]]);
+    }
+  }, [searchParams]);
 
   return (
     <div

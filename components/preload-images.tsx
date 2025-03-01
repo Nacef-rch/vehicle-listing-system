@@ -60,7 +60,7 @@ const PreloadImagesLink = forwardRef<HTMLAnchorElement, LinkProps>(
         >
           {children}
         </NextLink>
-        {prefetchedImages.map((src) => (
+        {prefetchedImages.map((src, index) => (
           <div
             key={src}
             style={{
@@ -71,7 +71,24 @@ const PreloadImagesLink = forwardRef<HTMLAnchorElement, LinkProps>(
               opacity: 0,
             }}
           >
-            <Image src={src} alt="" width={1} height={1} loading="eager" />
+            {index === 0 && (
+              <Image
+                src={src}
+                alt=""
+                loading="eager"
+                width={725}
+                height={434}
+                quality={75}
+              />
+            )}
+            <Image
+              src={src}
+              alt=""
+              loading="eager"
+              width={317}
+              height={175.5}
+              quality={50}
+            />
           </div>
         ))}
       </>

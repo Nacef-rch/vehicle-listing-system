@@ -24,7 +24,7 @@ const VehicleCard = ({ id, index, images, ...props }: Props) => {
       className="group text-gray-700"
       href={`/vehicle-detail/${id}`}
       prefetch={true}
-      images={images.slice(1, 5)}
+      images={images.slice(0, 4)}
       aria-label={`View details of ${props.title}`}
     >
       <NextImage
