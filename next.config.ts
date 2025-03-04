@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  experimental: {
+    ppr: "incremental",
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
@@ -22,7 +25,7 @@ const nextConfig: NextConfig = {
   },
   // Recommended: this will reduce output
   // Docker image size by 80%+
-  output: "standalone",
+  //output: "standalone",
 };
 
 export default nextConfig;

@@ -11,6 +11,8 @@ import { VehicleCarousel } from "./_components/carousel";
 import VehicleDescription from "./_components/vehicle-description";
 import AlertDialog from "@/components/alert-dialog";
 
+export const experimental_ppr = true;
+
 export default async function VehicleDetailPage({
   params,
 }: {

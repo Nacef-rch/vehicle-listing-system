@@ -17,6 +17,8 @@ type VehiclesPageProps = {
   searchParams?: Promise<VehiclesSearchParams>;
 };
 
+export const experimental_ppr = true;
+
 const VehiclesPage = async (props: VehiclesPageProps) => {
   try {
     const searchParams = await props.searchParams;
